@@ -1,0 +1,31 @@
+<h1>
+  <%= link_to 'Sellers', sellers_path %>
+  >
+  <%= @seller.name %>
+</h1>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Products:</strong>
+  <%= @seller.products.count %>
+</p>
+
+<p>
+  <strong>Gained money:</strong>
+  <%= number_to_currency(@seller.gained_money) %>
+</p>
+
+<p>
+  <strong>Lost money:</strong>
+  <%= number_to_currency(@seller.lost_money) %>
+</p>
+
+<p>
+  <strong>Balance:</strong>
+  <%= number_to_currency(@seller.balance) %>
+</p>
+
+<%= link_to 'Edit', edit_seller_path(@seller) %> |
+<%= link_to 'Back', sellers_path %> |
+<%= link_to 'Products', seller_products_path(@seller) %> 

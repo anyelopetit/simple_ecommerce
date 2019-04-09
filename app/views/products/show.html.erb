@@ -1,0 +1,48 @@
+<h1>
+  <%= link_to @seller.name, seller_path(@seller) %>
+  >
+  <%= @product.name %>
+</h1>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @product.name %>
+</p>
+
+
+<p>
+  <strong>Price:</strong>
+  <%= number_to_currency(@product.price) %>
+</p>
+
+<p>
+  <strong>Purchases:</strong>
+  <%= @product.purchases.count %>
+</p>
+
+
+<p>
+  <strong>Purchases money:</strong>
+  <%= number_to_currency(@product.purchases_money) %>
+</p>
+
+<p>
+  <strong>Refunds:</strong>
+  <%= @product.refunds.count %>
+</p>
+
+<p>
+  <strong>Refunded money:</strong>
+  <%= number_to_currency(@product.refunded_money) %>
+</p>
+
+<p>
+  <strong>Balance:</strong>
+  <%= number_to_currency(@product.balance) %>
+</p>
+
+<%= link_to 'Edit', edit_seller_product_path(@seller, @product) %> |
+<%= link_to 'Back', seller_products_path(@seller) %> |
+<%= link_to 'Purchases', seller_product_purchases_path(@seller, @product) %>

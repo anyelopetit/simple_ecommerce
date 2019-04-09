@@ -1,0 +1,6 @@
+<h1>Editing Product</h1>
+
+<%= render 'form', product: @product %>
+
+<%= link_to 'Show', [@seller, @product] %> |
+<%= link_to 'Back', seller_products_path(@seller) %>

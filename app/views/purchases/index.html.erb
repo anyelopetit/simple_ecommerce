@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>
+  <%= link_to @seller.name, seller_path(@seller) %>
+  >
+  <%= link_to @product.name, seller_product_path(@seller, @product) %>
+  >
+  Purchases
+</h1>
+
+<table>
+  <% if @purchases.blank? %>
+    <thead>
+      <tr>
+        <th>No purchases found</th>
+      </tr>
+    </thead>
+  <% else %>
+    <thead>
+      <tr>
+        <th>Purchased at</th>
+        <th>Freezed money</th>
+        <th>Lost money</th>
+        <th colspan="1"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @purchases.each do |purchase| %>
+        <tr>
+          <td><%= time_tag(purchase.purchased_at) %></td>
+          <td><%= number_to_currency(purchase.product_price) %></td>
+          <td><%= "-#{number_to_currency(purchase.refund&.purchase_price)}" if purchase.refund %></td>
+          <td><%= render 'refunds/form', purchase: purchase, refund: Refund.new unless purchase.refund %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% end %>
+</table>
+
+<%= render 'form', purchase: @product.purchases.build  %>

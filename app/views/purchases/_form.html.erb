@@ -1,0 +1,29 @@
+<%= form_with(model: [@seller, @product, purchase], local: true) do |form| %>
+  <% if purchase.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(purchase.errors.count, "error") %> prohibited this purchase from being saved:</h2>
+
+      <ul>
+      <% purchase.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.hidden_field :product_id, value: @product.id %>
+  </div>
+
+  <div class="field">
+    <%= form.hidden_field :product_price, value: @product.price %>
+  </div>
+
+  <div class="field">
+    <%= form.hidden_field :purchased_at, value: DateTime.now %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Purchase product' %>
+  </div>
+<% end %>

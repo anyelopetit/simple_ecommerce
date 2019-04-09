@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h2>
+  Sellers Payment (<%= time_tag(@payment.created_at) %>)
+  for <%= @payment.days_ago %> days ago
+  (<%= time_tag(@payment.created_at - @payment.days_ago.days) %>):
+</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Paid out</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @payment.sellers.each do |seller| %>
+      <tr>
+        <td><%= seller.name %></td>
+        <td><%= seller.charge_at(@payment.created_at - @payment.days_ago.days) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_payment_path(@payment) %> |
+<%= link_to 'Back', payments_path %>
